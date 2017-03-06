@@ -99,10 +99,10 @@ func (c *RemoteClient) commit(message string) error {
 		obj.Hash(),
 	)
 
-	err = c.storage.SetReference(ref)
-	if err != nil {
-		return err
-	}
+	//err = c.storage.SetReference(ref)
+	//if err != nil {
+	//	return err
+	//}
 
 	refspec := gitconfig.RefSpec(
 		fmt.Sprintf(
@@ -112,6 +112,7 @@ func (c *RemoteClient) commit(message string) error {
 			c.Branch,
 		),
 	)
+	return fmt.Errorf("%+v\n%+v", refspec, ref)
 
 	pushOptions := &git.PushOptions{
 		Auth:       c.Options.Auth,
